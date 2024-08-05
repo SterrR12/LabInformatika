@@ -59,3 +59,14 @@ export const fetchTopCharacters = async () => {
         throw error;
     }
 };
+
+export const fetchTopPeople = async () => {
+    try {
+        const response = await await fetch(`${BASE_URL}/top/people`);
+        const json = await response.json();
+        return json.data;
+    } catch (error) {
+        console.error('Error fetching top people:', error);
+        throw error;
+    }
+}

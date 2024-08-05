@@ -11,6 +11,7 @@ import AnimeView from './views/AnimeView';
 import MangaView from './views/MangaView';
 import LoginScreen from './pages/Validasi/Login';
 import SignupScreen from './pages/Validasi/Signup';
+import TopPeopleScreen from './pages/People/TopPeople';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -63,6 +64,29 @@ function TopMangaStack({ navigation }) {
     );
 }
 
+function TopPeopleStack({ navigation }) {
+    const handleLogout = () => {
+        navigation.replace('login');
+    };
+
+    return (
+        <Stack.Navigator>
+            <Stack.Screen
+            name="Top People"
+            component={TopPeopleScreen}
+            options={{
+                headerRight: () => (
+                    <TouchableOpacity onPress={handleLogout} style={{ marginRight: 15 }}>
+                        <Ionicons name="log-out-outline" size={24} color="black" />
+                    </TouchableOpacity>
+                    ),
+            }}
+            />
+            {/*<Stack.Screen name="PeopleDetail" component={PeopleView} />*/}
+        </Stack.Navigator>
+    )
+}
+
 function MainTabs() {
     return (
         <Tab.Navigator
@@ -74,6 +98,8 @@ function MainTabs() {
                         iconName = focused ? 'home' : 'home-outline';
                     } else if (route.name === 'Manga') {
                         iconName = focused ? 'book' : 'book-outline';
+                    }else if (route.name === 'People') {
+                        iconName = focused ? 'star' : 'star-outline';
                     }
 
                     return <Ionicons name={iconName} size={size} color={color} />;
@@ -87,6 +113,7 @@ function MainTabs() {
         >
             <Tab.Screen name="Anime" component={HomeStack} />
             <Tab.Screen name="Manga" component={TopMangaStack} />
+            <Tab.Screen name='People' component={TopPeopleStack} />
         </Tab.Navigator>
     );
 }
