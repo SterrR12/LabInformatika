@@ -1,5 +1,6 @@
 const BASE_URL = 'https://api.jikan.moe/v4';
 
+// Fetch top anime
 export const fetchTopAnime = async () => {
     try {
         const response = await fetch(`${BASE_URL}/top/anime`);
@@ -11,6 +12,7 @@ export const fetchTopAnime = async () => {
     }
 };
 
+// Fetch top manga
 export const fetchTopManga = async () => {
     try {
         const response = await fetch(`${BASE_URL}/top/manga`);
@@ -22,6 +24,7 @@ export const fetchTopManga = async () => {
     }
 };
 
+// Fetch anime detail
 export const fetchAnimeDetail = async (id) => {
     try {
         const response = await fetch(`${BASE_URL}/anime/${id}`);
@@ -33,6 +36,7 @@ export const fetchAnimeDetail = async (id) => {
     }
 };
 
+// Fetch manga detail
 export const fetchMangaDetail = async (id) => {
     try {
         const response = await fetch(`${BASE_URL}/manga/${id}`);
@@ -40,6 +44,18 @@ export const fetchMangaDetail = async (id) => {
         return json.data; // Sesuaikan dengan struktur data yang diberikan oleh API Jikan
     } catch (error) {
         console.error('Error fetching manga detail:', error);
+        throw error;
+    }
+};
+
+// Fetch top characters
+export const fetchTopCharacters = async () => {
+    try {
+        const response = await fetch(`${BASE_URL}/top/characters`);
+        const json = await response.json();
+        return json.data; // Sesuaikan dengan struktur data yang diberikan oleh API Jikan
+    } catch (error) {
+        console.error('Error fetching top characters:', error);
         throw error;
     }
 };

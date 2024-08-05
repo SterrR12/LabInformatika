@@ -48,7 +48,7 @@ function TopMangaStack({ navigation }) {
     return (
         <Stack.Navigator>
             <Stack.Screen 
-                name="TopManga" 
+                name="Top Manga" 
                 component={TopMangaScreen} 
                 options={{
                     headerRight: () => (
@@ -70,22 +70,23 @@ function MainTabs() {
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
 
-                    if (route.name === 'Home') {
+                    if (route.name === 'Anime') {
                         iconName = focused ? 'home' : 'home-outline';
-                    } else if (route.name === 'TopManga') {
+                    } else if (route.name === 'Manga') {
                         iconName = focused ? 'book' : 'book-outline';
                     }
 
                     return <Ionicons name={iconName} size={size} color={color} />;
                 },
+                tabBarActiveTintColor: 'tomato',
+                tabBarInactiveTintColor: 'gray',
+                tabBarStyle: {
+                    display: 'flex',
+                },
             })}
-            tabBarOptions={{
-                activeTintColor: 'tomato',
-                inactiveTintColor: 'gray',
-            }}
         >
-            <Tab.Screen name="Home" component={HomeStack} />
-            <Tab.Screen name="TopManga" component={TopMangaStack} />
+            <Tab.Screen name="Anime" component={HomeStack} />
+            <Tab.Screen name="Manga" component={TopMangaStack} />
         </Tab.Navigator>
     );
 }
